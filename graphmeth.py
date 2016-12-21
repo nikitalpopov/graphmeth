@@ -1,9 +1,19 @@
 import numpy as np
 import init
 import scipy.optimize
-import newton
+from solution import *
 
 print('Коэффициенты целевой функции:')
-print(init.c)
+c = init.c
+c = np.matrix([[1], [2]])
+print(c)
 print('Коэффициенты ограничений:')
-print(init.a)
+a = init.a
+a = np.matrix([[5, 3], [3, 4], [1, 0]])
+print(a)
+print('Правая часть ограничений:')
+b = init.b
+b = np.matrix([[1], [2], [3]])
+print(b)
+
+x = sysSolution(a, b)
