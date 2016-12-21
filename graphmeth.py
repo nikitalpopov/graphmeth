@@ -42,6 +42,10 @@ for i in range(x.size):
 
 if counts < x.size:
     counts += 1
+    for i in range (init.n):
+        if b[i] < 0:
+            counts -= 1
+            break
 pointsX = np.zeros(counts)
 pointsY = np.zeros(counts)
 if counts < x.size:
