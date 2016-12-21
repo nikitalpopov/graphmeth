@@ -26,14 +26,22 @@ for z in range (x.size):
             x[z] = 0
             y[z] = 0
 
-pointsX = np.empty(x.size)
-pointsY = np.empty(x.size)
+count = 0
+for i in range (x.size):
+    if(x[i] != 0 or y[i] != 0):
+        count += 1
+
+pointsX = np.zeros(count)
+pointsY = np.zeros(count)
 count = 0
 for i in range (x.size):
     if(x[i] != 0 or y[i] != 0):
         pointsX[count] = x[i]
         pointsY[count] = y[i]
         count += 1
+
+print(pointsX)
+print(pointsY)
 
 plt.plot(pointsX, pointsY, 'green')
 plt.show()
