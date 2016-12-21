@@ -9,7 +9,7 @@ from jarvis import *
 print('Коэффициенты целевой функции:')
 c = init.c
 c = np.matrix([[1], [3]])
-print(c)
+print(c.T)
 print('Коэффициенты ограничений:')
 a = init.a
 a = np.matrix([[3, 2], [1, 2], [-1, 1], [0, 1], [-1, 0], [0, -1]])
@@ -68,7 +68,7 @@ newPointsX = np.zeros(counts + 1)
 newPointsY = np.zeros(counts + 1)
 maxZ = c[0] * newPointsX[0] + c[1] * newPointsY[0]
 indexMax = 0
-for i in range (counts):
+for i in range(counts):
     newPointsX[i] = pointsX[H[i]]
     newPointsY[i] = pointsY[H[i]]
     if c[0] * newPointsX[i] + c[1] * newPointsY[i] > maxZ:
@@ -80,6 +80,9 @@ newPointsY[counts] = newPointsY[0]
 # Строим график со многоугольником, отображающим допустимое
 # множество решений, и отмеченной точкой, в которой
 # целевая функция достигает максимальное значение
+
+print('')
+print(c[0], ' * ', newPointsX(indexMax), ' + ', c[1], ' * ', newPointsY(indexMax), ' = ', maxZ)
 
 plt.plot(newPointsX, newPointsY, 'green')
 plt.scatter(newPointsX[indexMax], newPointsY[indexMax])
