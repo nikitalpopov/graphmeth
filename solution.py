@@ -18,7 +18,6 @@ def sysSolution(a, b):  # решение 'A * x = b'
             tempB = np.zeros((2, 1))
             tempX = np.zeros((2, 1))
             if not i == k:
-                print(i, ' != ', k)
                 for l in range(init.k):
                     tempA[0][:] = a[i][:]
                     tempA[1][:] = a[k][:]
