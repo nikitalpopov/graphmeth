@@ -2,6 +2,7 @@ import numpy as np
 import init
 import matplotlib.pyplot as plt
 from solution import *
+from jarvis import *
 
 print('Коэффициенты целевой функции:')
 c = init.c
@@ -26,7 +27,7 @@ for z in range (x.size):
             x[z] = 0
             y[z] = 0
 
-counts = 0
+counts = 0 # Количество наших точек
 for i in range (x.size):
     if(x[i] != 0 or y[i] != 0):
         counts += 1
@@ -38,15 +39,19 @@ pointsY = np.zeros(counts)
 if(counts < x.size):
     pointsX[counts - 1] = 0
     pointsY[counts - 1] = 0
-count = 0
+count = 0 # Счётчик только для цикла
 for i in range (x.size):
     if(x[i] != 0 or y[i] != 0):
         pointsX[count] = x[i]
         pointsY[count] = y[i]
         count += 1
 
-print(pointsX)
-print(pointsY)
+A = np.vstack((pointsX, pointsY)).T
+P = list(range(counts))
+H = [A[0]]
+del P[0]
 
-plt.plot(pointsX, pointsY, 'green')
-plt.show()
+print(jarvis(A, counts))
+
+#plt.plot(pointsX, pointsY, 'green')
+#plt.show()
