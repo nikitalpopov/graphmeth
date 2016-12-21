@@ -20,5 +20,12 @@ vect = sysSolution(a, b)
 x = vect[:][0]
 y = vect[:][1]
 
-plt.plot(x, y, 'ro')
+for z in range (x.size):
+    for w in range (init.n):
+        print(w, '/n')
+        if(a[w, 0] * x[z] + a[w, 1] * y[z] > b[w]):
+            x[z] = 0
+            y[z] = 0
+
+plt.plot(x, y, 'green')
 plt.show()
