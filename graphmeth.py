@@ -53,11 +53,17 @@ del P[0]
 
 newPointsX = np.zeros(counts + 1)
 newPointsY = np.zeros(counts + 1)
+max = c[0] * newPointsX[0] + c[1] * newPointsY[0]
+indexMax = 0
 for i in range (counts):
     newPointsX[i] = pointsX[H[i]]
     newPointsY[i] = pointsY[H[i]]
+    if(c[0] * newPointsX[i] + c[1] * newPointsY[i] > max):
+        max = c[0] * newPointsX[i] + c[1] * newPointsY[i]
+        indexMax = i
 newPointsX[counts] = newPointsX[0]
 newPointsY[counts] = newPointsY[0]
 
 plt.plot(newPointsX, newPointsY, 'green')
+plt.scatter(newPointsX[indexMax], newPointsY[indexMax])
 plt.show()
