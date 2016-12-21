@@ -42,4 +42,3 @@ def sysSolution(a, b):
             counter += 1
 
     return vect
-
