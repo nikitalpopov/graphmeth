@@ -22,10 +22,18 @@ y = vect[:][1]
 
 for z in range (x.size):
     for w in range (init.n):
-        print(w, '/n')
         if(a[w, 0] * x[z] + a[w, 1] * y[z] > b[w]):
             x[z] = 0
             y[z] = 0
 
-plt.plot(x, y, 'green')
+pointsX = np.empty(x.size)
+pointsY = np.empty(x.size)
+count = 0
+for i in range (x.size):
+    if(x[i] != 0 or y[i] != 0):
+        pointsX[count] = x[i]
+        pointsY[count] = y[i]
+        count += 1
+
+plt.plot(pointsX, pointsY, 'green')
 plt.show()
