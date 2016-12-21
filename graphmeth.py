@@ -48,10 +48,16 @@ for i in range (x.size):
 
 A = np.vstack((pointsX, pointsY)).T
 P = list(range(counts))
-H = [A[0]]
+H = jarvis(A, counts)
 del P[0]
 
-print(jarvis(A, counts))
+newPointsX = np.zeros(counts + 1)
+newPointsY = np.zeros(counts + 1)
+for i in range (counts):
+    newPointsX[i] = pointsX[H[i]]
+    newPointsY[i] = pointsY[H[i]]
+newPointsX[counts] = newPointsX[0]
+newPointsY[counts] = newPointsY[0]
 
-#plt.plot(pointsX, pointsY, 'green')
-#plt.show()
+plt.plot(newPointsX, newPointsY, 'green')
+plt.show()
