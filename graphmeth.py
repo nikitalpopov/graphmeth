@@ -26,13 +26,18 @@ for z in range (x.size):
             x[z] = 0
             y[z] = 0
 
-count = 0
+counts = 0
 for i in range (x.size):
     if(x[i] != 0 or y[i] != 0):
-        count += 1
+        counts += 1
 
-pointsX = np.zeros(count)
-pointsY = np.zeros(count)
+if(counts < x.size):
+    counts += 1
+pointsX = np.zeros(counts)
+pointsY = np.zeros(counts)
+if(counts < x.size):
+    pointsX[counts - 1] = 0
+    pointsY[counts - 1] = 0
 count = 0
 for i in range (x.size):
     if(x[i] != 0 or y[i] != 0):
