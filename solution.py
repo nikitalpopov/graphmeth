@@ -1,15 +1,20 @@
 import numpy as np
 from numpy import linalg as la
 import init
-import newton
 
 
-def sysSolution(a, b):  # решение 'A * x = b'
+def sysSolution(a, b):
+
+    # Решение всех возможных пар линейных уравнений из 'A * x = b'
+    # для получения координат точек пересечения ограничений.
+    # На вход подаются:
+    # a - матрица (init.n, init.k)
+    # b - вектор (init.n, 1)
+    # На выходе получаем:
+    # vect - матрица координат точек пересечения (1ая строка - x1, 2ая – x2)
+
     counter = 0
     vect = np.zeros((init.k, init.n*init.n))
-    tempA = np.zeros((2, 2))
-    tempB = np.zeros((2, 1))
-    tempX = np.zeros((2, 1))
     isUsable = True
 
     for i in range(init.n):
@@ -35,6 +40,6 @@ def sysSolution(a, b):  # решение 'A * x = b'
                     for m in range(init.k):
                         vect[m][counter] = tempX[m][0]
             counter += 1
-    # print('Vect:', vect)
+
     return vect
 
