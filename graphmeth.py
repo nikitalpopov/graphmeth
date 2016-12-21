@@ -1,8 +1,8 @@
 import numpy as np
 import init
-import scipy.optimize
 import matplotlib.pyplot as plt
 from solution import *
+from jarvis import *
 
 print('Коэффициенты целевой функции:')
 c = init.c
@@ -21,5 +21,49 @@ vect = sysSolution(a, b)
 x = vect[:][0]
 y = vect[:][1]
 
-plt.plot(x, y, 'ro')
+for z in range (x.size):
+    for w in range (init.n):
+        if(a[w, 0] * x[z] + a[w, 1] * y[z] > b[w]):
+            x[z] = 0
+            y[z] = 0
+
+counts = 0 # Количество наших точек
+for i in range (x.size):
+    if(x[i] != 0 or y[i] != 0):
+        counts += 1
+
+if(counts < x.size):
+    counts += 1
+pointsX = np.zeros(counts)
+pointsY = np.zeros(counts)
+if(counts < x.size):
+    pointsX[counts - 1] = 0
+    pointsY[counts - 1] = 0
+count = 0 # Счётчик только для цикла
+for i in range (x.size):
+    if(x[i] != 0 or y[i] != 0):
+        pointsX[count] = x[i]
+        pointsY[count] = y[i]
+        count += 1
+
+A = np.vstack((pointsX, pointsY)).T
+P = list(range(counts))
+H = jarvis(A, counts)
+del P[0]
+
+newPointsX = np.zeros(counts + 1)
+newPointsY = np.zeros(counts + 1)
+max = c[0] * newPointsX[0] + c[1] * newPointsY[0]
+indexMax = 0
+for i in range (counts):
+    newPointsX[i] = pointsX[H[i]]
+    newPointsY[i] = pointsY[H[i]]
+    if(c[0] * newPointsX[i] + c[1] * newPointsY[i] > max):
+        max = c[0] * newPointsX[i] + c[1] * newPointsY[i]
+        indexMax = i
+newPointsX[counts] = newPointsX[0]
+newPointsY[counts] = newPointsY[0]
+
+plt.plot(newPointsX, newPointsY, 'green')
+plt.scatter(newPointsX[indexMax], newPointsY[indexMax])
 plt.show()
