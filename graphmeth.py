@@ -8,15 +8,15 @@ from jarvis import *
 
 print('Коэффициенты целевой функции:')
 c = init.c
-c = np.matrix([[1], [-1]])
+c = np.matrix([[1], [3]])
 print(c.T)
 print('Коэффициенты ограничений:')
 a = init.a
-a = np.matrix([[1, -1], [8, 5], [1, -2], [-1, -4], [-1, 0], [0, -1]])
+a = np.matrix([[3, 2], [1, 2], [-1, 1], [0, 1], [-1, 0], [0, -1]])
 print(a)
 print('Правая часть ограничений:')
 b = init.b
-b = np.matrix([[-8], [80], [2], [-4], [0], [0]])
+b = np.matrix([[12], [6], [1], [2], [0], [0]])
 print(b)
 
 # Находим точки пересечения ограничений
@@ -30,14 +30,14 @@ y = vect[:][1]
 for z in range(x.size):
     for w in range(init.n):
         if a[w, 0] * x[z] + a[w, 1] * y[z] > b[w]:
-            x[z] = None
-            y[z] = None
+            x[z] = 0
+            y[z] = 0
 
 # Убираем лишние точки (0,0), полученные на предыдущем шаге
 
 counts = 0  # Количество наших точек
 for i in range(x.size):
-    if not x[i] is None or not y[i] is None:
+    if not x[i] == 0 or not y[i] == 0:
         counts += 1
 
 if counts < x.size:
@@ -50,7 +50,7 @@ if counts < x.size:
 
 count = 0  # Счётчик только для цикла
 for i in range(x.size):
-    if not x[i] is None or not y[i] is None:
+    if not x[i] == 0 or not y[i] == 0:
         pointsX[count] = x[i]
         pointsY[count] = y[i]
         count += 1
