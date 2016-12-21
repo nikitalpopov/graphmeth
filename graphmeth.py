@@ -77,12 +77,14 @@ for i in range(counts):
 newPointsX[counts] = newPointsX[0]
 newPointsY[counts] = newPointsY[0]
 
+# Выводим результат вычисления в консоль
+
+print('')
+print(float(c[0]), ' * ', float(newPointsX[indexMax]), ' + ', float(c[1]), ' * ', float(newPointsY[indexMax]), ' = ', float(maxZ))
+
 # Строим график со многоугольником, отображающим допустимое
 # множество решений, и отмеченной точкой, в которой
 # целевая функция достигает максимальное значение
-
-print('')
-print(c[0], ' * ', newPointsX(indexMax), ' + ', c[1], ' * ', newPointsY(indexMax), ' = ', maxZ)
 
 plt.plot(newPointsX, newPointsY, 'green')
 plt.scatter(newPointsX[indexMax], newPointsY[indexMax])
