@@ -42,7 +42,7 @@ for i in range(x.size):
 
 if counts < x.size:
     counts += 1
-    for i in range (init.n):
+    for i in range(init.n):
         if b[i] < 0:
             counts -= 1
             break
@@ -86,8 +86,11 @@ newPointsY[counts] = newPointsY[0]
 # Выводим результат вычисления в консоль
 
 print('')
-print('Максимальное значение целевой функции в вычисленной точке:')
-print(float(c[0]), ' * ', float(newPointsX[indexMax]), ' + ', float(c[1]), ' * ', float(newPointsY[indexMax]), ' = ', float(maxZ))
+if not counts == 0:
+    print('Максимальное значение целевой функции в вычисленной точке:')
+    print(float(c[0]), ' * ', float(newPointsX[indexMax]), ' + ', float(c[1]), ' * ', float(newPointsY[indexMax]), ' = ', float(maxZ))
+else:
+    print('Задача не имеет решения')
 
 # Строим график со многоугольником, отображающим допустимое
 # множество решений, и отмеченной точкой, в которой
